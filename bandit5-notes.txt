@@ -1,0 +1,37 @@
+lvl 5 -> lvl 6
+
+This involved piping 'find' through multiple filters to:
+
+select human-readable, 1033 bytes in size and not executable
+
+After some experimenting this narrowed it down to 7 files
+
+find -type f -size -1033c ! -executable -exec du -h {} + | xargs file | grep 'text'
+
+./maybehere08/.file2: ASCII text, with very long lines (746)
+./maybehere12/-file2: ASCII text
+./maybehere10/.file2: ASCII text
+./maybehere15/.file2: ASCII text
+./maybehere01/-file2: ASCII text
+./maybehere18/-file2: ASCII text
+./maybehere09/-file2: ASCII text, with very long lines (773)
+bandit5@bandit:~/inhere$ 
+
+Now I just need to filter down to one.
+
+I may have stumbled upon a clue. There are folders with`spaces in their names  
+bandit5@bandit:~/inhere/maybehere15$ ls
+-file1  -file2  -file3  spaces file1  spaces file2  spaces file3
+bandit5@bandit:~/inhere/maybehere15$ 
+
+
+I need to learn how to grep wildcards so I can filter the list more precisely 
+I may also be filtering out spaces in folder names and files, so I added this
+
+find -type f -print0 -size -1033c ! -executable -exec du -h {} + | xargs -0 file | grep 'text'
+
+The -print0 and -0 flags delimit by null-delmited  instead of spaces to catch those 
+files/folders but now there are a lot more ASCII files to sort through. 
+
+Most of these need to be filtered out by the ", with very long lines" trailing the 
+"ASCII text" type info

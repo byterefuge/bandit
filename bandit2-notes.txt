@@ -1,0 +1,11 @@
+lvl 2 - lvl 3
+
+you have to cat the password again by reading in this file
+--spaces in this filename--
+
+to cat this you type the following
+cat < "--spaces in this filename--"
+
+and cat outputs this password:
+7ZZ2LFrykP2zEyvBl4m3clcL7tGYJPME
+

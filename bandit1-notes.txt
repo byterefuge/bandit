@@ -1,0 +1,11 @@
+lvl 0 -> lvl 1
+
+there is a file in the home dir called "-"
+
+You have to cat the file but the trick is - reads as stdin
+So you have to pipe it in to read the file.
+
+cat < -
+
+This reads in the file to cat which outputs this
+password: PK8fYLZg2hnHSz83plBL1iEPKdD3QToB

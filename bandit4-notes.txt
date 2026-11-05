@@ -1,0 +1,25 @@
+lvl 4 -> lvl 5
+
+the password is stored in a file in the "inhere" dir
+there are 10 files named -file00 through -file09
+
+In order to find the human readable files you have to use the 
+find command and pipe that into xargs | grep
+
+find <dir_nme> -type f -print0 | xargs -0 file | grep 'text'
+
+This does the following:
+bandit4@bandit:~/inhere$ find -type f -print0 | xargs -0 file | grep
+Usage: grep [OPTION]... PATTERNS [FILE]...
+Try 'grep --help' for more information.
+xargs: file: terminated by signal 13
+bandit4@bandit:~/inhere$ find -type f -print0 | xargs -0 file | grep 'text'
+./-file09: Motorola S-Record; binary data in text format
+./-file07: ASCII text
+bandit4@bandit:~/inhere$ cat < "-file07"
+6C7h9GD8M6ai5nr7wo1RonrzFjj9yIrG
+ 
+
+
+The password is 6C7h9GD8M6ai5nr7wo1RonrzFjj9yIrG
+

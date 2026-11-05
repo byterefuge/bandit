@@ -1,0 +1,11 @@
+lvl 3 - lvl 4
+
+cd into dir "inhere" and cat hiddenfile named
+"...hiding-from-you"
+
+using this command:
+
+cat ...hiding-from-you
+
+which outputs this password:
+xzTXq1rDJQVVAzdv5cHq1TQytTWufAMq
